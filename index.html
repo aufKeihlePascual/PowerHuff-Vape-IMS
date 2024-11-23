@@ -3,61 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard UI</title>
-    <link rel="stylesheet" href="style.css">
+    <title>PowerPuff Vape Dashboard</title>
+    <!-- Include Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="brand">
-                <h2>PowerPuff Vape</h2>
-            </div>
-            <ul class="menu">
-                <li><a href="#" class="active">Dashboard</a></li>
-                <li><a href="#">Order</a></li>
-                <li><a href="#">Suppliers</a></li>
-                <li><a href="#">Users</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Stocks</a></li>
-                <li><a href="#">Reports</a></li>
-            </ul>
-            <button class="logout">Logout</button>
-        </aside>
-        
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Top Navigation -->
-            <header class="top-nav">
-                <input type="text" placeholder="Search here..." />
-                <div class="nav-icons">
-                    <span>Support</span>
-                    <span>Settings</span>
-                    <span>Meow</span>
+    <div class="sidebar">
+        <h1>PowerPuff Vape</h1>
+        <ul>
+            <li onclick="showPage('dashboard')">Dashboard</li>
+            <li onclick="showPage('order')">Order</li>
+            <li onclick="showPage('suppliers')">Suppliers</li>
+            <li>Users</li>
+            <li>Products</li>
+            <li>Stocks</li>
+            <li>Reports</li>
+        </ul>
+        <button class="logout">Logout</button>
+    </div>
+
+    <div class="main">
+        <!-- Dashboard -->
+        <section id="dashboard" class="page active">
+            <header>
+                <input type="text" placeholder="Search here...">
+                <div class="header-icons">
+                    <i class="fa-solid fa-bell" title="Notifications"></i>
+                    <i class="fa-solid fa-circle-question" title="Support"></i>
+                    <i class="fa-solid fa-gear" title="Settings"></i>
+                    <i class="fa-solid fa-user" title="Profile"></i>
                 </div>
             </header>
+            <h2>Dashboard Overview</h2>
+        </section>
 
-            <!-- Dashboard Content -->
-            <section class="content">
-                <div class="welcome-box">
-                    <h2>Hello and welcome!</h2>
+        <!-- Order Page -->
+        <section id="order" class="page">
+            <header>
+                <input type="text" placeholder="Search here...">
+                <div class="header-icons">
+                    <i class="fa-solid fa-bell" title="Notifications"></i>
+                    <i class="fa-solid fa-circle-question" title="Support"></i>
+                    <i class="fa-solid fa-gear" title="Settings"></i>
+                    <i class="fa-solid fa-user" title="Profile"></i>
                 </div>
-                <div class="overview">
-                    <div class="overview-card">
-                        <h3>Last week overview</h3>
-                        <p>$120,537.90</p>
-                        <small>▼ 9.5%</small>
-                        <div class="chart-line"></div>
-                    </div>
-                    <div class="overview-card">
-                        <div class="chart-bar"></div>
-                    </div>
+            </header>
+            <h2>Orders Whatever</h2>
+            <div class="order-layout">
+                <div class="order-box">Order 1</div>
+                <div class="order-box">Order 2</div>
+                <div class="order-box">Order 3</div>
+            </div>
+        </section>
+
+        <!-- Suppliers Page -->
+        <section id="suppliers" class="page">
+            <header>
+                <input type="text" placeholder="Search here...">
+                <div class="header-icons">
+                    <i class="fa-solid fa-bell" title="Notifications"></i>
+                    <i class="fa-solid fa-circle-question" title="Support"></i>
+                    <i class="fa-solid fa-gear" title="Settings"></i>
+                    <i class="fa-solid fa-user" title="Profile"></i>
                 </div>
-                <div class="computations">
-                    <h3>Computations</h3>
+            </header>
+            <h2>Suppliers</h2>
+            <div class="supplier-layout">
+                <div class="messages">
+                    <h3>Messages</h3>
+                    <div class="message-box"></div>
+                    <div class="message-box"></div>
                 </div>
-            </section>
-        </main>
+                <div class="contacts">
+                    <h3>Contacts</h3>
+                    <!-- Placeholder for contact info -->
+                </div>
+            </div>
+        </section>
     </div>
+
+    <script>
+        // JavaScript to toggle between pages
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
 </body>
 </html>
