@@ -2,47 +2,82 @@
 
 namespace App\Controllers;
 
-class DashboardController extends BaseController
+use App\Models\User;
+use App\Models\Admin;
+
+abstract class DashboardController extends BaseController
 {
+    protected $userModel, $adminModel;
+
+    public function __construct()
+    {
+        $this->userModel = new User();
+        $this->adminModel = new Admin();
+    }
+
+    protected function isLoggedIn()
+    {
+        return isset($_SESSION['is_logged_in']) && $_SESSION['is_logged_in'];
+    }
+
+    protected function renderDashboardContent()
+    {
+        // Default dashboard content
+        return '
+            <div class="welcome-box">
+                <h2>Hello, ' . htmlspecialchars($_SESSION['first_name']) . ' ' . htmlspecialchars($_SESSION['last_name']) . '!</h2>
+            </div>
+            <div class="overview">
+                <div class="overview-card">
+                    <h3>Last week overview</h3>
+                    <p>$120,537.90</p>
+                    <small>▼ 9.5%</small>
+                    <div class="chart-line"></div>
+                </div>
+                <div class="overview-card">
+                    <div class="chart-bar"></div>
+                </div>
+            </div>
+            <div class="computations">
+                <h3>Computations</h3>
+            </div>
+        ';
+    }
+
     public function showDashboard()
     {
-        if (!isset($_SESSION['is_logged_in']) || !$_SESSION['is_logged_in']) {
+        if (!$this->isLoggedIn()) {
             header('Location: /login');
             exit;
         }
 
+        $dashboardContent = $this->renderDashboardContent();
+
         $data = [
             'title' => 'Dashboard',
+            'username' => $_SESSION['username'],
             'first_name' => $_SESSION['first_name'],
-            'last_name' => $_SESSION['last_name']
+            'last_name' => $_SESSION['last_name'],
+            'dashboardContent' => $dashboardContent
         ];
 
-        return $this->render('dashboard', $data);
+        return $this->render('admin-dashboard', $data);
     }
 
-    public function loadContent()
+    public function showUserManagement()
     {
-        $content = $_GET['content'] ?? 'dashboard'; 
+        if ($_SESSION['role'] !== 'admin') {
+            header('Location: /login');
+            exit;
+        }
 
-        $contentPages = [
-            'dashboard' => $this->renderContent('dashboard'),
-            'products' => $this->renderContent('products'),
-            'categories' => $this->renderContent('categories'),
-            'reports' => $this->renderContent('reports'),
+        $users = $this->userModel->getAllUsers();
+
+        $data = [
+            'title' => 'User Management',
+            'users' => $users
         ];
 
-        echo $contentPages[$content] ?? $contentPages['dashboard'];
-    }
-
-    private function renderContent($page)
-    {
-        $content = [
-            'dashboard' => '<h1>Dashboard</h1><p>Welcome to your inventory dashboard!</p>',
-            'products' => '<h1>Products</h1><p>Manage your products here.</p>',
-            'categories' => '<h1>Categories</h1><p>Manage your categories here.</p>',
-            'reports' => '<h1>Reports</h1><p>View your reports here.</p>',
-        ];
-
-        return $content[$page] ?? $content['dashboard'];
+        return $this->render('user-management', $data);
     }
 }

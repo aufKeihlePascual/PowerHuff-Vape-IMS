@@ -37,6 +37,13 @@ body {
     text-align: center;
 }
 
+.info-container .logo {
+    width: 200px; 
+    height: auto;  
+    display: block;
+    margin: 0 auto 20px; 
+}
+
 h2 {
     margin-bottom: 20px;
 }
@@ -98,4 +105,19 @@ button:hover {
 .info-container a:hover {
     background: #fff;
     color: #24486d;
+}
+
+.password-container {
+    position: relative;
+}
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 14px;
+}
+.forgot-password {
+    margin-top: 10px;
 }

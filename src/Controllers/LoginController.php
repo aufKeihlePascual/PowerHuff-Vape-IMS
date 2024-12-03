@@ -43,19 +43,26 @@ class LoginController extends BaseController
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        $user = $this->userModel->login($username, $password);
+        $user = $this->userModel->getUserByUsername($username);
 
-        if ($user) {
+        // if ($user && password_verify($password, $user['password_hash'])) {
+        if ($user && $user['password_hash'] === $password) {
             $_SESSION['login_attempts'] = 0;
 
             $_SESSION['is_logged_in'] = true;
-            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['first_name'] = $user['first_name'];
             $_SESSION['last_name'] = $user['last_name'];
+            $_SESSION['role'] = $user['role'];
 
-            header('Location: /dashboard');
-            exit;
+            if ($user['role'] === 'Admin') {
+                header('Location: /admin-dashboard');
+                exit;
+            } elseif ($user['role'] === 'Inventory_Manager') {
+                header('Location: /inventory-manager-dashboard');
+                exit;
+            }
         } else {
             $_SESSION['login_attempts'] += 1;
 
