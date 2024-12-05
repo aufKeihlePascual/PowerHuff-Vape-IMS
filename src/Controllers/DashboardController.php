@@ -66,19 +66,21 @@ abstract class DashboardController extends BaseController
 
     public function showUserManagement()
     {
-        if ($_SESSION['role'] == 'Inventory_Manager') {
-            echo 'You do not have the appropriate permission to view that page.';
-            header('Location: /inventory-manager-dashboard');
-            exit;
+        if ($_SESSION['role'] !== 'Admin') {
+            if ($_SESSION['role'] == 'Inventory_Manager') {
+                echo 'You do not have the appropriate permission to view that page.';
+                header('Location: /inventory-manager-dashboard');
+                exit;
+            }
+            elseif ($_SESSION['role'] == 'Procurement_Manager') {
+                echo 'You do not have the appropriate permission to view that page.';
+                header('Location: /procurement-manager-dashboard');
+                exit;
+            } else {
+                header('Location: /login');
+            }
         }
-        elseif ($_SESSION['role'] == 'Procurement_Manager') {
-            echo 'You do not have the appropriate permission to view that page.';
-            header('Location: /procurement-manager-dashboard');
-            exit;
-        } else {
-            header('Location: /login');
-        }
-
+        
         $users = $this->userModel->getAllUsers();
 
         $data = [
