@@ -921,3 +921,32 @@ form select {
 .cancel-btn:hover {
     background: #7f1414;
 }
+/* Active menu item style */
+.sidebar-menu li.active {
+    background-color: #333;
+    color: white;
+}
+
+.sidebar-menu li {
+    transition: background-color 0.3s;
+}
+
+.submenu {
+    display: none; /* Initially hide submenu */
+}
+
+.submenu.active {
+    display: block; /* Show submenu when active */
+}
+.password-wrapper {
+    position: relative;
+}
+
+.password-wrapper i {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Adjust the positioning as needed */
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+

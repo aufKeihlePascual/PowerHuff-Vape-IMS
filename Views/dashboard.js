@@ -72,4 +72,21 @@ $(document).ready(function() {
         $('#content').show();
     }
 });
+$(document).ready(function () {
+    // When any menu item is clicked, add 'active' class to it
+    $(".sidebar-menu li").click(function () {
+        // Remove 'active' from all items
+        $(".sidebar-menu li").removeClass("active");
+        // Add 'active' class to clicked item
+        $(this).addClass("active");
+
+        // Toggle the submenu visibility
+        $(this).children(".submenu").toggleClass("active");
+    });
+
+    // Ensure the dashboard menu item doesn't stay active after clicking others
+    $(".sidebar-menu li").not(".dashboard").click(function () {
+        $(".dashboard").removeClass("active");
+    });
+});
 
