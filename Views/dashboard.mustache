@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
-    <link rel="stylesheet" href="/Views/css/dash-style.css">
+    <link rel="stylesheet" href="/Views/dash-style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/Views/js/dashboard.js"></script>
+
 </head>
 <body>
     <div class="dashboard-container">
@@ -15,13 +15,46 @@
         <main class="main-content">
             {{> top-nav}}
             
-
-            <!--------------------- Dashboard Content --------------------->
+            
+            <!--------------------- Dashboard Content ---------------------> 
             <section class="content">
                 {{{ dashboardContent }}}
             </section>
 
         </main>
     </div>
+
+    <!-- Place your custom JavaScript here -->
+    <script src="/Views/dashboard.js"></script> <!-- Or you can place the code inline below -->
+
+    <script>
+        $(document).ready(function() {
+            // Handle Products menu click
+            $(".sidebar .menu-item.products").on("click", function(event) {
+                event.stopPropagation(); // Prevent the click from propagating and closing the menu
+                
+                // Toggle the active class and visibility of the sub-menu
+                var submenu = $(this).find(".sub-menu");
+                
+                if (submenu.is(":visible")) {
+                    submenu.slideUp(); // Hide the submenu if it's already visible
+                } else {
+                    submenu.slideDown(); // Show the submenu if it's hidden
+                }
+
+                // Optionally, close other submenus if necessary
+                $(".sidebar .menu-item").not(this).removeClass("active").find(".sub-menu").slideUp();
+                $(this).toggleClass("active"); // Toggle the active class on the clicked menu item
+            });
+
+            // Close all submenus when clicking outside the sidebar
+            $(document).on("click", function(event) {
+                if (!$(event.target).closest(".sidebar").length) {
+                    $(".sidebar .sub-menu").slideUp(); // Hide all submenus
+                    $(".sidebar .menu-item").removeClass("active"); // Remove active class from all menu items
+                }
+            });
+        });
+    </script>
 </body>
 </html>

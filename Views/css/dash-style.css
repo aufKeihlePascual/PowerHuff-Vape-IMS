@@ -161,7 +161,6 @@ body {
     flex-grow: 1;
     display: flex;
     justify-content: center;
-    margin-left: 120px;
 }
 
 .top-nav input {
@@ -354,7 +353,7 @@ button:hover {
 }
 
 .fa-bell::after {
-    content: '!';
+    content: '!'; 
     position: absolute;
     top: -5px;
     right: -5px;
@@ -365,414 +364,78 @@ button:hover {
     padding: 2px 6px;
 }
 
-.add-user-btn-wrapper {
-    display: flex;
-    justify-content: flex-end; /* Aligns the button to the right */
-    width: 100%;
-    margin-bottom: 20px; /* Optional, just to add some space below the button */
-}
-
-.add-user-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.add-user-btn:hover {
-    background-color: #0056b3;
-}
-
-.modal-content {
+/* USER MANAGEMENT */
+/* User Management Page Specific Styles */
+.user-form {
+    background: #fff;
     padding: 20px;
-    background-color: #fff;
-}
-
-.close-btn {
-    font-size: 1.5em;
-    cursor: pointer;
-}
-
-/* Ensure the modal is initially hidden */
-#addUserModal {
-    display: none; /* Modal is hidden initially */
-    position: fixed;
-    z-index: 1;
-    left: 30%;
-    top: 0;
-    width: 50%;
-    height: 50%;
-    /* background-color: rgba(0, 0, 0, 0.4); */
-    /* padding-top: 60px; */
-}
-
-/* Modal content */
-.modal-content {
-    background-color: #fff;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-/* Close button */
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#addUserModal .create-user {
-    background-color: #0b8b29;
-}
-
-#addUserModal .create-user:hover {
-    background-color: #0c6120;
-}
-
-.password-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 99.3%;
-}
-
-.password-wrapper input {
-    flex: 1;
-    /* padding-right: 35px; */
-}
-
-.password-wrapper #togglePassword {
-    position: absolute;
-    cursor: pointer;
-    color: #888;
-    font-size: 18px;
-    transition: color 0.3s ease;
-    right: 30px;
-    bottom: 25px;
-}
-
-.password-wrapper .fa-eye:hover {
-    color: #11c479;
-}
-
-.input-password-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-input[type="password"] {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-#togglePassword {
-    position: absolute;
-    right: 100px;
-    top: 51.3%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #888;
-    font-size: 18px;
-    transition: color 0.3s ease;
-}
-
-#togglePassword:hover {
-    color: #24486d;
-}
-
-.create-user {
-    margin-top: 20px;
-    background-color: #24486d;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-}
-
-.create-user:hover {
-    background-color: #1a3551;
-}
-
-/* Main Header for User Management */
-.main-header {
-    font-size: 32px;
-    font-weight: bold;
-    color: #24486d;
-    text-align: center;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    border-bottom: 3px solid #24486d;
-    padding-bottom: 10px;
-}
-
-.sub-header {
-    font-size: 24px;
-    font-weight: 600;
-    color: #1a3551;
-    margin-bottom: 10px;
-    text-transform: capitalize;
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #f1f1f1;
     border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
 }
 
-.main-header, .sub-header {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.user-form h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #122841;
 }
 
-/* Table for the Dashboard (Inventory Manager) */
-.table-container {
-    overflow-x: auto;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
-}
-
-#productsTable {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-#productsTable th,
-#productsTable td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-#productsTable th {
-    background-color: #f1f1f1;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-#productsTable tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-#productsTable tr:hover {
-    background-color: #f1f1f1;
-}
-
-#productsTable .hover:bg-gray-50:hover {
-    background-color: #e0e0e0;
-}
-
-.edit-product,
-.delete-product {
-    cursor: pointer;
-    margin-right: 5px;
-    border-radius: 4px;
-}
-
-/* DELETE MODAL */
-#deleteUserModal {
-    display: none; /* Modal is hidden by default */
-    position: fixed;
-    z-index: 1;
-    left: 30%;
-    top: auto;
-    bottom: auto;
-    width: 50%;
-    height: 40%;
-    padding-top: 20px; /* Optional, for spacing */
-    overflow-y: auto; /* To prevent modal overflow */
-}
-
-/* Modal Content */
-#deleteUserModal .modal-content {
-    background-color: #fff;
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 50%;
-    border-radius: 5px;
-}
-
-/* Close button */
-#deleteUserModal .close-btn {
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#deleteUserModal .close-btn:hover,
-#deleteUserModal .close-btn:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-#deleteUserModal .cancel-delete,
-#deleteUserModal .confirm-delete {
-    padding: 10px 20px;
-    margin: 5px;
+.user-form label {
     font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+    margin-bottom: 5px;
+    color: #122841;
 }
 
-#deleteUserModal .cancel-delete {
-    background-color: #ccc;
-    color: #333;
-}
-
-#deleteUserModal .cancel-delete:hover {
-    background-color: #aaa;
-}
-
-#deleteUserModal .confirm-delete {
-    background-color: #d9534f;
-    color: white;
-}
-
-#deleteUserModal .confirm-delete:hover {
-    background-color: #c9302c;
-}
-
-
-#confirmationModal {
-    /* display: none; Modal is hidden by default */
-    position: fixed;
-    z-index: 1;
-    left: 5%;
-    top: auto;
-    bottom: auto;
+.user-form select {
     width: 100%;
-    height: 80%;
-    padding-top: 20px; /* Optional, for spacing */
-    overflow-y: auto;
-}
-
-/* Styling for the confirmation modal */
-#confirmationModal .modal-content {
-    position: relative;
-    padding: 20px;
-    width: 500px;
-    text-align: center; /* Center the content inside the modal */
-}
-
-/* Center the close button */
-#confirmationModal .confirm-close-btn {
-    display: inline-block;
-    margin-top: 20px; /* Space between the message and the button */
-    padding: 10px 20px;
-    background-color: #4CAF50; /* Button background color */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-}
-
-#confirmationModal .confirm-close-btn:hover {
-    background-color: #45a049; 
-}
-
-/* Edit User Modal */
-#editUserModal {
-    display: none;
-    position: fixed; /* Fixed position ensures it stays in place on the screen */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    z-index: 1000; /* Ensure this modal is on top of other elements */
-}
-
-/* Edit User Modal Content */
-#editUserModal .modal-content {
-    position: relative;
-    margin: 10% auto;
-    padding: 20px;
-    background-color: white;
-    width: 50%;
-    border-radius: 5px;
-    z-index: 1001; /* Make sure the content is on top of the background */
-}
-
-.update-user {
-    background-color: #248b28;
-}
-
-form select {
-    width: 100%;
-    padding: 15px;
+    padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
 }
 
-.button-container {
-    display: flex;
-    width: 50%;  /* Adjust width to fit your buttons */
-    margin: 50px auto 0;
-    gap: 20px;  /* Add gap between buttons (adjust as needed) */
-    justify-content: center; /* Center the buttons horizontally */
-}
-
-.update-btn {
-    padding: 15px;
-    border: none;
+.user-form input {
+    width: 96%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 16px;
-    font-weight: 600;
-    width: 30%;  
-    transition: background 0.3s, color 0.3s;
-    display: flex;
-    align-items: center;  
-    justify-content: center; 
 }
 
-.cancel-btn {
-    padding: 15px;
-    border: none;
+#addUserModal,
+#deleteUserModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 30%;
+    top: 0;
+    width: 50%;
+    height: 50%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+#addUserModal .modal-content,
+#deleteUserModal .modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    width: 25%;  
-    transition: background 0.3s, color 0.3s;
-    display: flex;
-    align-items: center;  
-    justify-content: center; 
+    width: 50%;
 }
 
-.update-btn {
-    background: #2ba148;
-    color: #fff;
+.hidden {
+    display: none;
 }
 
-.update-btn:hover {
-    background: #246d36;
-}
-
-.cancel-btn {
-    background: #9c1616;
-    color: #fff;
-    text-decoration: none;  /* Remove underline */
-}
-
-.cancel-btn:hover {
-    background: #7f1414;
+/* Adjust for mobile responsiveness */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+    .main-content {
+        padding: 10px;
+    }
 }
